@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Angular chrome plugin",
+  "description": "Skeleton Angular chrome plugin",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "assets/snowflake_512.png",
+    "default_popup": "index.html",
+    "default_title": "Angular Plugin!"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "permissions": [
+    "activeTab"
+  ]
+}

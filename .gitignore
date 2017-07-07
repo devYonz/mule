@@ -1,0 +1,17 @@
+*.iml
+*.ipr
+*.iws
+.DS_Store
+.cache
+.idea
+.idea_modules
+.classpath
+.gradle
+.project
+.settings
+.ideaDataSources
+/dist/
+/logs/
+/out/
+dataSources/
+spark-api/conf/evolutions/
