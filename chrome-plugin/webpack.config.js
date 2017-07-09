@@ -14,7 +14,7 @@ const { AotPlugin } = require('@ngtools/webpack');
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const realNodeModules = fs.realpathSync(nodeModules);
 const genDirNodeModules = path.join(process.cwd(), 'src', '$$_gendir', 'node_modules');
-const entryPoints = ["inline","polyfills","sw-register","scripts","styles","vendor","main"];
+const entryPoints = ["inline","polyfills","sw-register","styles","vendor","main"];
 const minimizeCss = false;
 const baseHref = "";
 const deployUrl = "";
@@ -82,8 +82,8 @@ module.exports = {
     "polyfills": [
       "./src/polyfills.ts"
     ],
-    "scripts": [
-      "script-loader!./src/background/background.ts"
+    "background": [
+      "./src/background/background.ts"
     ],
     "styles": [
       "./src/styles.css"
@@ -356,6 +356,7 @@ module.exports = {
     new NoEmitOnErrorsPlugin(),
     new GlobCopyWebpackPlugin({
       "patterns": [
+        "manifest.json",
         "assets",
         "favicon.ico"
       ],
@@ -371,6 +372,11 @@ module.exports = {
       "moduleFilenameTemplate": "[resource-path]",
       "fallbackModuleFilenameTemplate": "[resource-path]?[hash]",
       "sourceRoot": "webpack:///"
+    }),
+    new HtmlWebpackPlugin({
+      "template": "src/background/background.html",
+      "filename": "background.html",
+      "chunks": ["background"]
     }),
     new HtmlWebpackPlugin({
       "template": "./src/index.html",
@@ -405,12 +411,12 @@ module.exports = {
       "minChunks": 2,
       "async": "common"
     }),
-    new CommonsChunkPlugin({
-      "name": [
-        "inline"
-      ],
-      "minChunks": null
-    }),
+    // new CommonsChunkPlugin({
+    //   "name": [
+    //     "inline"
+    //   ],
+    //   "minChunks": null
+    // }),
     new CommonsChunkPlugin({
       "name": [
         "vendor"

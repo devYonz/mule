@@ -22,9 +22,7 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": [
-        "background/background.ts"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

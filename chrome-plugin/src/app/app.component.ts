@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { OnInit} from '@angular/core';
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
+import {Background} from "../background/background";
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,9 @@ export class AppComponent implements OnInit {
 
   interceptClick() {
     console.log( 'Clicked Intercept');
-    chrome.webRequest.onBeforeRequest.addListener(this.requestProcessor);
+    // chrome.webRequest.onBeforeRequest.addListener(this.requestProcessor);
+    let bp: Window = chrome.extension.getBackgroundPage();
+    console.log(bp);
   }
   getHeroes(): void {
     this.heroes = this.heroService.getHeroes();
@@ -32,7 +35,6 @@ export class AppComponent implements OnInit {
   getAsyncHeroes(): void {
     this.heroService.getHeroesAsync().then(asyncHeroes => this.heroes = asyncHeroes);
   }
-
 
   requestProcessor(details) {
     console.log(details);
